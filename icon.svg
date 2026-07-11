@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background with rounded corners (iOS style) -->
+  <rect width="512" height="512" rx="112" fill="#2E5339"/>
+
+  <!-- Subtle inner gradient overlay -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a6b47;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1f3b27;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="antlerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8be45;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a87d1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- Deer stag silhouette -->
+  <g fill="url(#antlerGrad)">
+
+    <!-- LEFT ANTLER — main beam up and back -->
+    <path d="
+      M210 295
+      C208 270 205 245 200 218
+      C196 195 190 175 182 158
+      C178 150 174 144 170 140
+      L163 147
+      C167 152 171 158 175 167
+      C182 183 188 202 192 224
+      C194 236 195 247 196 258
+      Z
+    "/>
+    <!-- Left antler — brow tine (forward point) -->
+    <path d="
+      M192 224
+      C185 218 175 212 163 208
+      C158 206 153 205 149 205
+      L149 213
+      C153 213 157 214 162 216
+      C172 220 181 226 188 232
+      Z
+    "/>
+    <!-- Left antler — top fork -->
+    <path d="
+      M182 158
+      C178 148 176 138 178 128
+      C180 120 184 113 190 108
+      L196 114
+      C191 118 188 124 186 132
+      C184 140 185 150 188 160
+      Z
+    "/>
+    <!-- Left antler — back top tine -->
+    <path d="
+      M178 128
+      C172 120 163 114 153 111
+      C147 109 141 109 137 110
+      L138 118
+      C142 117 147 117 152 119
+      C161 122 169 128 174 136
+      Z
+    "/>
+
+    <!-- RIGHT ANTLER — mirror -->
+    <path d="
+      M302 295
+      C304 270 307 245 312 218
+      C316 195 322 175 330 158
+      C334 150 338 144 342 140
+      L349 147
+      C345 152 341 158 337 167
+      C330 183 324 202 320 224
+      C318 236 317 247 316 258
+      Z
+    "/>
+    <!-- Right antler — brow tine -->
+    <path d="
+      M320 224
+      C327 218 337 212 349 208
+      C354 206 359 205 363 205
+      L363 213
+      C359 213 355 214 350 216
+      C340 220 331 226 324 232
+      Z
+    "/>
+    <!-- Right antler — top fork -->
+    <path d="
+      M330 158
+      C334 148 336 138 334 128
+      C332 120 328 113 322 108
+      L316 114
+      C321 118 324 124 326 132
+      C328 140 327 150 324 160
+      Z
+    "/>
+    <!-- Right antler — back top tine -->
+    <path d="
+      M334 128
+      C340 120 349 114 359 111
+      C365 109 371 109 375 110
+      L374 118
+      C370 117 365 117 360 119
+      C351 122 343 128 338 136
+      Z
+    "/>
+
+    <!-- HEAD — elongated snout pointing slightly down -->
+    <ellipse cx="256" cy="318" rx="28" ry="36" fill="url(#antlerGrad)"/>
+    <!-- Snout -->
+    <ellipse cx="256" cy="348" rx="18" ry="14" fill="url(#antlerGrad)"/>
+    <!-- Neck -->
+    <path d="M228 320 C224 340 226 360 230 375 L282 375 C286 360 288 340 284 320 Z" fill="url(#antlerGrad)"/>
+
+    <!-- EAR left -->
+    <ellipse cx="222" cy="298" rx="14" ry="20" transform="rotate(-20 222 298)" fill="url(#antlerGrad)"/>
+    <!-- EAR right -->
+    <ellipse cx="290" cy="298" rx="14" ry="20" transform="rotate(20 290 298)" fill="url(#antlerGrad)"/>
+
+  </g>
+
+  <!-- BODY — solid chest below neck -->
+  <path d="M215 373 C210 385 208 398 210 410 L302 410 C304 398 302 385 297 373 Z" fill="url(#antlerGrad)"/>
+
+  <!-- Dividing line above text -->
+  <rect x="80" y="422" width="352" height="3" rx="1.5" fill="#C9A227" opacity="0.6"/>
+
+  <!-- PROSTALK text -->
+  <text x="256" y="460" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="bold"
+        fill="#ffffff" text-anchor="middle" letter-spacing="3">PROSTALK</text>
+
+  <!-- SAFARIS subtext -->
+  <text x="256" y="492" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600"
+        fill="#C9A227" text-anchor="middle" letter-spacing="5">SAFARIS</text>
+
+</svg>

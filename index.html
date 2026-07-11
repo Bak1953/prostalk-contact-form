@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Prostalk Safaris" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <title>Prostalk Safaris</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- ===================== LAUNCH SCREEN ===================== -->
+  <div id="screen-launch" class="screen active">
+    <div class="launch-container">
+      <div class="launch-logo">
+        <img src="./icon.svg" alt="Prostalk Safaris" class="launch-icon" />
+        <h1 class="launch-title">Prostalk Safaris</h1>
+        <p class="launch-subtitle">Contact Capture</p>
+      </div>
+      <div class="launch-buttons">
+        <button class="btn btn-primary btn-large" id="btn-new-session">
+          <span class="btn-icon">＋</span>
+          New Session
+        </button>
+        <button class="btn btn-secondary btn-large" id="btn-open-session">
+          <span class="btn-icon">📂</span>
+          Open Existing Session
+        </button>
+      </div>
+      <input type="file" id="file-open-input" accept=".json" style="display:none" />
+    </div>
+  </div>
+
+  <!-- ===================== NEW SESSION MODAL ===================== -->
+  <div id="modal-new-session" class="modal-overlay hidden">
+    <div class="modal">
+      <h2 class="modal-title">New Session</h2>
+      <p class="modal-desc">Enter a name for this session — usually the show or event name.</p>
+      <div class="form-group">
+        <label for="input-session-name" class="form-label">Session Name</label>
+        <input type="text" id="input-session-name" class="form-input" placeholder="e.g. CLA Game Fair 2026" maxlength="100" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-cancel-new-session">Cancel</button>
+        <button class="btn btn-primary" id="btn-confirm-new-session">Start Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN APP ===================== -->
+  <div id="screen-app" class="screen hidden">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <button class="btn-icon-only" id="btn-home" title="Back to start">⌂</button>
+      </div>
+      <div class="header-center">
+        <h1 class="header-title">Prostalk Safaris</h1>
+        <div class="header-session" id="header-session-name">Session</div>
+      </div>
+      <div class="header-right">
+        <div class="contact-count-badge">
+          <span id="header-contact-count">0</span>
+          <span class="contact-count-label">contacts</span>
+        </div>
+        <button class="btn btn-save" id="btn-save">
+          💾 Save
+        </button>
+      </div>
+    </header>
+
+    <!-- Tab Bar -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="form" id="tab-form">
+        <span class="tab-icon">✏️</span>
+        Add Contact
+      </button>
+      <button class="tab-btn" data-tab="contacts" id="tab-contacts">
+        <span class="tab-icon">👥</span>
+        Contacts <span class="tab-badge" id="tab-count-badge">0</span>
+      </button>
+    </nav>
+
+    <!-- ---- TAB: CONTACT FORM ---- -->
+    <div id="tab-panel-form" class="tab-panel active">
+      <div class="form-scroll">
+        <form id="contact-form" novalidate>
+
+          <!-- Validation message -->
+          <div id="form-error" class="form-error hidden"></div>
+
+          <!-- SECTION: Contact Details -->
+          <section class="form-section">
+            <h2 class="section-heading">Contact Details</h2>
+
+            <div class="form-group">
+              <label for="field-name" class="form-label required">Name</label>
+              <input type="text" id="field-name" class="form-input" placeholder="Full name" autocomplete="off" autocorrect="off" spellcheck="false" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="field-phone" class="form-label">Telephone</label>
+                <input type="tel" id="field-phone" class="form-input" placeholder="Phone number" autocomplete="off" />
+              </div>
+              <div class="form-group">
+                <label for="field-email" class="form-label">Email</label>
+                <input type="email" id="field-email" class="form-input" placeholder="Email address" autocomplete="off" autocapitalize="none" />
+              </div>
+            </div>
+            <div id="phone-email-error" class="field-error hidden">Please enter at least a phone number or email address.</div>
+
+            <div class="form-group">
+              <label for="field-address" class="form-label">Home Address</label>
+              <textarea id="field-address" class="form-input form-textarea" placeholder="Address (optional)" rows="3" autocomplete="off"></textarea>
+            </div>
+          </section>
+
+          <!-- SECTION: Africa -->
+          <section class="form-section section-africa">
+            <h2 class="section-heading section-heading-africa">Africa — Interest</h2>
+
+            <div class="interest-group">
+              <h3 class="interest-subheading">Plains Game</h3>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="africaPlainsGame" value="Springbuck" /><span class="checkbox-label">Springbuck</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaPlainsGame" value="Impala" /><span class="checkbox-label">Impala</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaPlainsGame" value="Kudu" /><span class="checkbox-label">Kudu</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaPlainsGame" value="Blesbuck" /><span class="checkbox-label">Blesbuck</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaPlainsGame" value="Eland" /><span class="checkbox-label">Eland</span></label>
+              </div>
+            </div>
+
+            <div class="interest-group">
+              <h3 class="interest-subheading">Safari Tailored for You</h3>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="africaTailoredSafari" value="Buffalo" /><span class="checkbox-label">Buffalo</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaTailoredSafari" value="Sable" /><span class="checkbox-label">Sable</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaTailoredSafari" value="Crocodile" /><span class="checkbox-label">Crocodile</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaTailoredSafari" value="Waterbuck" /><span class="checkbox-label">Waterbuck</span></label>
+              </div>
+            </div>
+
+            <div class="interest-group">
+              <h3 class="interest-subheading">Safari for Bird &amp; Wildfowl</h3>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="africaBirdWildfowl" value="Duck" /><span class="checkbox-label">Duck</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaBirdWildfowl" value="Geese" /><span class="checkbox-label">Geese</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaBirdWildfowl" value="Dove" /><span class="checkbox-label">Dove</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="africaBirdWildfowl" value="Pigeon" /><span class="checkbox-label">Pigeon</span></label>
+              </div>
+            </div>
+
+            <div class="interest-group">
+              <h3 class="interest-subheading">Duration (hunting days, excluding travel)</h3>
+              <div class="duration-selector" id="africa-duration">
+                <label class="duration-item"><input type="radio" name="africaDuration" value="5" /><span class="duration-label">5</span></label>
+                <label class="duration-item"><input type="radio" name="africaDuration" value="6" /><span class="duration-label">6</span></label>
+                <label class="duration-item"><input type="radio" name="africaDuration" value="7" /><span class="duration-label">7</span></label>
+                <label class="duration-item"><input type="radio" name="africaDuration" value="8" /><span class="duration-label">8</span></label>
+                <label class="duration-item"><input type="radio" name="africaDuration" value="9" /><span class="duration-label">9</span></label>
+                <label class="duration-item"><input type="radio" name="africaDuration" value="10" /><span class="duration-label">10</span></label>
+              </div>
+              <p class="duration-hint">days</p>
+            </div>
+          </section>
+
+          <!-- SECTION: Europe -->
+          <section class="form-section section-europe">
+            <h2 class="section-heading section-heading-europe">Europe — Interest</h2>
+
+            <div class="interest-group">
+              <h3 class="interest-subheading">Species</h3>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="europeSpecies" value="Wild Boar" /><span class="checkbox-label">Wild Boar</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="europeSpecies" value="Bear" /><span class="checkbox-label">Bear</span></label>
+                <label class="checkbox-item"><input type="checkbox" name="europeSpecies" value="Deer" /><span class="checkbox-label">Deer</span></label>
+              </div>
+            </div>
+
+            <div class="interest-group">
+              <h3 class="interest-subheading">Duration (hunting days, excluding travel)</h3>
+              <div class="duration-selector" id="europe-duration">
+                <label class="duration-item"><input type="radio" name="europeDuration" value="3" /><span class="duration-label">3</span></label>
+                <label class="duration-item"><input type="radio" name="europeDuration" value="4" /><span class="duration-label">4</span></label>
+                <label class="duration-item"><input type="radio" name="europeDuration" value="5" /><span class="duration-label">5</span></label>
+              </div>
+              <p class="duration-hint">days</p>
+            </div>
+          </section>
+
+          <!-- SECTION: Notes -->
+          <section class="form-section">
+            <h2 class="section-heading">Notes</h2>
+            <div class="form-group">
+              <label for="field-notes" class="form-label">
+                Additional notes
+                <span class="notes-counter" id="notes-counter">0 / ~100 words</span>
+              </label>
+              <textarea id="field-notes" class="form-input form-textarea form-textarea-notes" placeholder="Anything else worth capturing — conversation highlights, specific requests, follow-up actions…" rows="5" autocomplete="off"></textarea>
+            </div>
+          </section>
+
+          <!-- Add Contact Button -->
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary btn-add-contact" id="btn-add-contact">
+              ✓ Add Contact
+            </button>
+            <button type="button" class="btn btn-ghost" id="btn-clear-form">
+              Clear Form
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- ---- TAB: CONTACTS LIST ---- -->
+    <div id="tab-panel-contacts" class="tab-panel">
+      <div class="contacts-toolbar">
+        <div class="contacts-search-wrap">
+          <input type="search" id="contacts-search" class="contacts-search" placeholder="Search contacts…" autocomplete="off" />
+        </div>
+      </div>
+      <div id="contacts-list" class="contacts-list">
+        <div class="contacts-empty" id="contacts-empty">
+          <p>No contacts captured yet.</p>
+          <p>Tap <strong>Add Contact</strong> to get started.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /screen-app -->
+
+  <!-- ===================== EDIT CONTACT MODAL ===================== -->
+  <div id="modal-edit-contact" class="modal-overlay hidden">
+    <div class="modal modal-wide">
+      <h2 class="modal-title">Edit Contact</h2>
+      <div id="edit-form-container">
+        <!-- Populated dynamically by JS -->
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-danger" id="btn-delete-contact">🗑 Delete</button>
+        <button class="btn btn-ghost" id="btn-cancel-edit">Cancel</button>
+        <button class="btn btn-primary" id="btn-save-edit">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CONFIRM MODAL ===================== -->
+  <div id="modal-confirm" class="modal-overlay hidden">
+    <div class="modal">
+      <h2 class="modal-title" id="confirm-title">Are you sure?</h2>
+      <div id="confirm-message" style="font-size:0.92rem;line-height:1.6;color:#444;"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btn-confirm-cancel">Cancel</button>
+        <button class="btn btn-danger" id="btn-confirm-ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

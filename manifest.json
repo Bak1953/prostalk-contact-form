@@ -1,0 +1,18 @@
+{
+  "name": "Prostalk Safaris",
+  "short_name": "Prostalk",
+  "description": "Contact capture form for exhibitions and game fairs",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#2E5339",
+  "theme_color": "#2E5339",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
