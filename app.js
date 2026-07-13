@@ -648,16 +648,43 @@ async function saveSessionToFile() {
     }
   }
 
-  // Safari (iPad & Mac): trigger download, then show clear instructions
+  // iPad / iPhone / modern Safari: use the native Share Sheet (offers "Save to Files")
+  const file = new File([blob], fileName, { type: 'application/json' });
+  if (navigator.share) {
+    try {
+      if (navigator.canShare && !navigator.canShare({ files: [file] })) {
+        throw new Error('Sharing files not supported');
+      }
+      await navigator.share({
+        files: [file],
+        title: 'Prostalk Session',
+        text: fileName,
+      });
+      showToast('Session saved ✓', 'success');
+      return;
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+      // Fall through to legacy download
+    }
+  }
+
+  // Legacy Safari fallback: trigger a download via an in-DOM anchor
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = fileName;
+  a.style.display = 'none';
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
 
   // Show instructions modal after a short delay so the download sheet has appeared
   setTimeout(() => showSaveInstructions(fileName), 400);
+
+  // Give Safari a moment to start the download before removing the anchor and revoking the blob
+  setTimeout(() => {
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, 1000);
 }
 
 function showSaveInstructions(fileName) {
