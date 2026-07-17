@@ -274,6 +274,8 @@ function readFormValues(prefix) {
     africaTailoredSafari: getChecked('africaTailoredSafari'),
     africaBirdWildfowl: getChecked('africaBirdWildfowl'),
     africaDurationDays: getRadio('africaDuration'),
+    africaWhenYear: getVal('africaWhenYear'),
+    africaWhenMonth: getVal('africaWhenMonth'),
     europeSpecies: getChecked('europeSpecies'),
     europeDurationDays: getRadio('europeDuration'),
   };
@@ -382,6 +384,13 @@ function buildContactCard(contact, number) {
     const tag = document.createElement('span');
     tag.className = 'interest-tag interest-tag-africa';
     tag.textContent = `${contact.africaDurationDays} days`;
+    tags.appendChild(tag);
+  }
+  if (contact.africaWhenYear || contact.africaWhenMonth) {
+    const parts = [contact.africaWhenMonth, contact.africaWhenYear].filter(Boolean);
+    const tag = document.createElement('span');
+    tag.className = 'interest-tag interest-tag-africa';
+    tag.textContent = `When: ${parts.join(' ')}`;
     tags.appendChild(tag);
   }
   if ((contact.europeSpecies || []).length > 0) {
@@ -517,8 +526,19 @@ function buildEditForm(contact) {
         <div class="checkbox-grid">${chk('africaBirdWildfowl', africaBird, contact.africaBirdWildfowl)}</div>
       </div>
       <div class="interest-group">
-        <h4 class="interest-subheading">Duration</h4>
-        <div class="duration-selector">${radio('africaDuration', [5,6,7,8,9,10], contact.africaDurationDays)}</div>
+        <div class="subheading-row">
+          <h4 class="interest-subheading">Duration</h4>
+          <span class="interest-subheading">When would you like to go</span>
+        </div>
+        <div class="duration-row">
+          <div class="duration-selector">${radio('africaDuration', [5,6,7,8,9,10], contact.africaDurationDays)}</div>
+          <div class="duration-when">
+            <label class="when-label">Year:</label>
+            <input type="text" id="edit-africaWhenYear" name="edit-africaWhenYear" class="form-input when-input" maxlength="9" value="${esc(contact.africaWhenYear)}" placeholder="2027" />
+            <label class="when-label">Month</label>
+            <input type="text" id="edit-africaWhenMonth" name="edit-africaWhenMonth" class="form-input when-input" maxlength="9" value="${esc(contact.africaWhenMonth)}" placeholder="July" />
+          </div>
+        </div>
         <p class="duration-hint">days</p>
       </div>
     </div>
@@ -598,6 +618,8 @@ function saveEditedContact() {
   contact.africaTailoredSafari = getEditChecked('africaTailoredSafari');
   contact.africaBirdWildfowl = getEditChecked('africaBirdWildfowl');
   contact.africaDurationDays = getEditRadio('africaDuration');
+  contact.africaWhenYear = document.getElementById('edit-africaWhenYear').value.trim();
+  contact.africaWhenMonth = document.getElementById('edit-africaWhenMonth').value.trim();
   contact.europeSpecies = getEditChecked('europeSpecies');
   contact.europeDurationDays = getEditRadio('europeDuration');
   contact.updatedAt = new Date().toISOString();
