@@ -468,7 +468,7 @@ function buildEditForm(contact) {
   const africaPlains = ['Springbuck', 'Impala', 'Kudu', 'Blesbuck', 'Eland'];
   const africaTailored = ['Buffalo', 'Sable', 'Crocodile', 'Waterbuck'];
   const africaBird = ['Duck', 'Geese', 'Dove', 'Pigeon'];
-  const europeSpeciesList = ['Wild Boar', 'Bear', 'Deer'];
+  const europeSpeciesList = ['Wild Boar', 'Bear', 'Deer', 'Mouflon', 'Chamois', 'Bird Shooting'];
 
   const chk = (name, values, checked) =>
     values.map(v => `

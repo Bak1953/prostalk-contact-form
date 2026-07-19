@@ -5,7 +5,7 @@
 // Caches the app shell so it works offline on iPad / iPhone
 // ============================================================
 
-const CACHE_NAME = 'prostalk-v1';
+const CACHE_NAME = 'prostalk-v2';
 const ASSETS = [
   './',
   './index.html',
